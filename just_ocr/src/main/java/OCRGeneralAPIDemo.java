@@ -25,7 +25,7 @@ public class OCRGeneralAPIDemo {
             con.setUseCaches(false);
             con.setDoInput(true);
             con.setDoOutput(true);
-            con.setReadTimeout(300000);
+            con.setReadTimeout(30000);
             con.setRequestMethod("POST");
             String boundary = "----" + UUID.randomUUID().toString().replaceAll("-", "");
             con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
