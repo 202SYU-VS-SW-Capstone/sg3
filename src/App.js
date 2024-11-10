@@ -8,6 +8,8 @@ import Footer from './components/Footer';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Mypage from './pages/Mypage';
+import Recipe from './pages/Recipe';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path="/login" element={<MainLayout><Login /></MainLayout>} />
         <Route path="/signup" element={<MainLayout><Signup /></MainLayout>} />
         <Route path="/mypage" element={<MainLayout><Mypage /></MainLayout>} />
+        <Route path="/recipe" element={<MainLayout><Recipe /></MainLayout>} />
 
       </Routes>
     </Router>
