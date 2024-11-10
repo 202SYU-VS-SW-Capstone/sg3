@@ -1,0 +1,31 @@
+/* 헤더 스타일 */
+header {
+  background-color: #81C975;  /* 헤더 색상 */
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+header .title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  flex-grow: 1;
+}
+
+header .login-button {
+  background-color: #fff;
+  color: #81C975;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+header .login-button:hover {
+  background-color: #e0f3e3;
+}

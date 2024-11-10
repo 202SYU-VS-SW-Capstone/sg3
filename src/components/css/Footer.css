@@ -1,0 +1,34 @@
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.company-info {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.social-links {
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: #81C975;
+  text-decoration: none;
+  margin: 0 10px; /* 링크 간의 간격을 추가 */
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+/* 모바일에서의 가독성을 위한 반응형 스타일 */
+@media (max-width: 600px) {
+  .social-links a {
+    display: block; /* 작은 화면에서는 링크를 세로로 배치 */
+    margin: 5px 0;
+  }
+}
