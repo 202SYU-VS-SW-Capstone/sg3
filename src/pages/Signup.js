@@ -47,7 +47,7 @@ const Signup = () => {
         <h1>새길</h1>
       </header>
 
-      <h2>회원가입 깃허브테스트 너무 졸리다ㅏ</h2>
+      <h2>회원가입</h2>
 
       <form className="signup-form" onSubmit={handleSignup}>
         <div className="form-group">
