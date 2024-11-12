@@ -9,6 +9,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Mypage from './pages/Mypage';
 import Recipe from './pages/Recipe';
+import Ingredient from './pages/Ingredient';
+import ImageAnalysis from './pages/ImageAnalysis';
+import RecipeResults from './pages/RecipeResults';
+import FridgeInventory from './pages/FridgeInventory';
+
+
 
 
 
@@ -21,6 +27,10 @@ function App() {
         <Route path="/signup" element={<MainLayout><Signup /></MainLayout>} />
         <Route path="/mypage" element={<MainLayout><Mypage /></MainLayout>} />
         <Route path="/recipe" element={<MainLayout><Recipe /></MainLayout>} />
+        <Route path="/ingredient" element={<MainLayout><Ingredient /></MainLayout>} />
+        <Route path="/imageAnalysis" element={<MainLayout><ImageAnalysis /></MainLayout>} />
+        <Route path="/recipeResults" element={<MainLayout><RecipeResults /></MainLayout>} />
+        <Route path="/fridgeInventory" element={<MainLayout><FridgeInventory /></MainLayout>} />
 
       </Routes>
     </Router>
