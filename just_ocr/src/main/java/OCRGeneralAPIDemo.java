@@ -16,8 +16,8 @@ public class OCRGeneralAPIDemo {
 
     public static void main(String[] args) {
         String apiURL = "https://2y40ropy76.apigw.ntruss.com/custom/v1/35548/226799cfe2155757960a454b563d6bfe97853f8b355af57aaaa11a9355adb21b/general";
-        String secretKey = "eGVwaXJsam52c3BDa0loUlpHR2J0cnlMV3J0UVJPcHg=";
-        String imageFile = "C:\\Users\\mdk19\\Desktop\\capstone front\\Ai\\img\\KakaoTalk_20241101_225352018.png";
+        String secretKey = "SmVrSmFlcVhWU0tjaVdhWm1FYmFMZG1PUHNyeUlFRFI=";
+        String imageFile = "C:\\Users\\mdk19\\Desktop\\capstone front\\Ai\\just_ocr\\src\\main\\java\\스크린샷 2024-11-04 133549.png";
 
         try {
             URL url = new URL(apiURL);
@@ -36,8 +36,9 @@ public class OCRGeneralAPIDemo {
             json.put("requestId", UUID.randomUUID().toString());
             json.put("timestamp", System.currentTimeMillis());
             JSONObject image = new JSONObject();
-            image.put("format", "jpg");
+            image.put("format", "png");
             image.put("name", "demo");
+
             JSONArray images = new JSONArray();
             images.put(image);
             json.put("images", images);
