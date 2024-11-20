@@ -1,101 +1,47 @@
-/* Home.css */
+/* Footer.css */
 
 /* 기본 스타일 */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-}
-
-
-.home-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center; 
-}
-
-
-.main-section {
-  margin-top: 50px;
-  position: relative; 
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-.main-image {
-  width: 80%;  
-  max-width: 1000px;
-  height: auto;
-  margin-bottom: 20px; 
-}
-
-
-.upload-button {
-  padding: 15px 30px;
-  background-color: #28a745; 
-  color: white;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px; 
-}
-
-.upload-button:hover {
-  background-color: #218838;
-}
-
-
-.recipe-section {
-  margin-top: 60px;
+footer {
+  background-color: #333; /* 어두운 배경 색상 */
+  color: #fff; /* 텍스트를 흰색으로 */
+  padding: 20px 0;
   text-align: center;
-}
-
-.recipe-section h3 {
-  margin-bottom: 10px; 
-}
-
-
-.recipe-section h3::after {
-  content: "";
-  display: block;
-  height: 3px;
-  background-color: #28a745; 
-  margin-top: 10px;
-  width: 50%; 
-  margin-left: auto;
-  margin-right: auto; 
-  margin-bottom: 50px; 
-}
-
-.gallery {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.gallery-item {
-  text-align: center;
-}
-
-.gallery-item img {
-  width: 200px;
-  height: auto;
-  border-radius: 5px;
-}
-
-.gallery-item p {
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.gallery-item span {
   font-size: 14px;
-  color: gray;
-  margin-top: 5px;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* 상단에 음영 추가 */
+}
+
+footer .company-info {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+footer p {
+  margin: 5px 0 15px;
+  font-size: 14px;
+  color: #ccc; /* 살짝 연한 색상 */
+}
+
+footer .social-links a {
+  color: #28a745; /* 녹색 강조 */
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  transition: color 0.3s ease; /* 부드러운 색상 변화 */
+}
+
+footer .social-links a:hover {
+  color: #1d6a32; /* 진한 녹색으로 변화 */
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  footer {
+    font-size: 12px;
+    padding: 15px 0;
+  }
+
+  footer .social-links a {
+    margin: 0 5px;
+  }
 }

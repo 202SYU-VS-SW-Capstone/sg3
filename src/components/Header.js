@@ -16,6 +16,10 @@ const Header = () => {
           <li><Link to="/imageAnalysis">imageAnalysis</Link></li>  
           <li><Link to="/recipeResults">RecipeResults</Link></li>  
           <li><Link to="/fridgeInventory">FridgeInventory</Link></li>  
+          <li><Link to="/withdraw">Withdraw</Link></li>  
+          <li><Link to="/passwordChange">PasswordChange</Link></li>  
+          <li><Link to="/inquiryForm">InquiryForm</Link></li>  
+          <li><Link to="/ReportForm">ReportForm</Link></li>  
 
         </ul>
       </nav>

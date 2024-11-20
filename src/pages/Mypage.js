@@ -9,13 +9,13 @@ const Mypage = () => {
 
   // 페이지 로드 시 사용자 데이터를 불러오는 useEffect
   useEffect(() => {
-    // 실제로 API 요청을 통해 사용자 데이터를 가져오는 코드 예시
+    // 실제로 API 요청을 통해 사용자 데이터를 가져오는 코드 
     const fetchUserData = async () => {
       try {
         // 예시로 하드코딩된 데이터 (실제 프로젝트에서는 API 호출 사용)
         const userData = {
           name: '홍길동',
-          image: '/mnt/data/image.png', // 사용자가 업로드한 이미지 경로
+          image: '/img/mypage.png', // 사용자가 업로드한 이미지 경로
         };
 
         setUserName(userData.name);

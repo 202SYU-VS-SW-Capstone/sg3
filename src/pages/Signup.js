@@ -42,10 +42,10 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <header className="signup-header">
+      {/* <header className="signup-header">
         <button className="back-button" onClick={() => navigate(-1)}>←</button>
         <h1>새길</h1>
-      </header>
+      </header> */}
 
       <h2>회원가입</h2>
 
