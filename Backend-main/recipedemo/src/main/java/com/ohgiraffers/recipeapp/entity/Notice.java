@@ -3,20 +3,26 @@ package com.ohgiraffers.recipeapp.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "comments")
+@Table(name = "notices")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment {  // 댓글 테이블
+public class Notice {   // 공지사항 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long recipeId; // 연결된 레시피 ID
-    private String author;
-    private String content;
-}
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
+    private String title;
+    private String content;
+
+    private LocalDate createdAt;
+}

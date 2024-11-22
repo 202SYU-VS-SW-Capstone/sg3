@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member {   // 회원 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

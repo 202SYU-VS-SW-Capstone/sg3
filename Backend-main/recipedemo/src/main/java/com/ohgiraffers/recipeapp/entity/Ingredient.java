@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Ingredient {
+public class Ingredient {   // 식재료 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

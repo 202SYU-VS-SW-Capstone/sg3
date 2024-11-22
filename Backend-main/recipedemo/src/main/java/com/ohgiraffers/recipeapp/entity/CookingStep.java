@@ -4,19 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "cooking_steps")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment {  // 댓글 테이블
+public class CookingStep {  // 조리단계 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long recipeId; // 연결된 레시피 ID
-    private String author;
-    private String content;
-}
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    private Recipe recipe;
 
+    private String description;
+    private int stepNumber;
+}

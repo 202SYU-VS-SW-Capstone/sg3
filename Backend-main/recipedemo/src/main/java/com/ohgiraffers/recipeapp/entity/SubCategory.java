@@ -4,19 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "sub_categories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment {  // 댓글 테이블
+public class SubCategory {  // 식재료 소분류 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long recipeId; // 연결된 레시피 ID
-    private String author;
-    private String content;
+    @ManyToOne
+    @JoinColumn(name = "major_category_id")
+    private MajorCategory majorCategory;
+
+    private String name;
 }
 
