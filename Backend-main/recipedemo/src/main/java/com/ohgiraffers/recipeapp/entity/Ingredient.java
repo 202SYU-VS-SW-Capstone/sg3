@@ -15,7 +15,11 @@ public class Ingredient {   // 식재료 테이블
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String category; // 예: "Vegetable", "Meat", 등
+    private String name;  // 재료 이름 (예: 소고기 안심)
+
+    @ManyToOne
+    @JoinColumn(name = "sub_category_id") // 소분류와 연관
+    private SubCategory subCategory;  // 재료의 소분류 (예: 소고기)
 }
+
 

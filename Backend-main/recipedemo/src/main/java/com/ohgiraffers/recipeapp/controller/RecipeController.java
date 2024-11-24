@@ -13,7 +13,7 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    // RecipeService를 생성자로 주입
+    // RecipeService 를 생성자로 주입
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }

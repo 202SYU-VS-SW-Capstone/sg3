@@ -15,8 +15,14 @@ public class Comment {  // 댓글 테이블
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long recipeId; // 연결된 레시피 ID
-    private String author;
-    private String content;
-}
+    @ManyToOne
+    @JoinColumn(name = "recipe_id", nullable = false) // 레시피와 연결
+    private Recipe recipe;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false) // 작성자와 연결
+    private Member author;
+
+    @Column(nullable = false)
+    private String content; // 댓글 내용
+}

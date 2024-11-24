@@ -20,5 +20,3 @@ public class Member {   // 회원 테이블
     private String password;
     private String role; // 예: "USER", "ADMIN"
 }
-
-// 커밋 및 푸쉬 풀리퀘 테스트용 주석입니다.

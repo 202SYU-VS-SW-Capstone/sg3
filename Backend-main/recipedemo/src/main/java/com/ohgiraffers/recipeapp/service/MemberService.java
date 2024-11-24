@@ -2,45 +2,61 @@ package com.ohgiraffers.recipeapp.service;
 
 import com.ohgiraffers.recipeapp.entity.Member;
 import com.ohgiraffers.recipeapp.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
+    // MemberRepository를 생성자로 주입
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    public List<Member> findAllMembers() {
+    /**
+     * 모든 회원 조회
+     *
+     * @return List<Member> - 모든 회원 목록
+     */
+    public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findMemberById(Long id) {
-        return memberRepository.findById(id);
-    }
-
-    public Member saveMember(Member member) {
-        return memberRepository.save(member);
-    }
-
-    public Member updateMember(Long id, Member updatedMember) {
+    /**
+     * ID로 특정 회원 조회
+     *
+     * @param id 회원 ID
+     * @return Member - 조회된 회원 데이터
+     * @throws IllegalArgumentException - 해당 ID의 회원이 없을 경우 예외 발생
+     */
+    public Member getMemberById(Long id) {
         return memberRepository.findById(id)
-                .map(member -> {
-                    member.setUsername(updatedMember.getUsername());
-                    member.setEmail(updatedMember.getEmail());
-                    member.setPassword(updatedMember.getPassword());
-                    member.setRole(updatedMember.getRole());
-                    return memberRepository.save(member);
-                })
-                .orElseThrow(() -> new RuntimeException("Member not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Member not found with id: " + id));
     }
 
+    /**
+     * 특정 회원 정보 수정
+     *
+     * @param id 수정할 회원 ID
+     * @param updatedMember 수정할 회원 데이터
+     * @return Member - 수정된 회원 데이터
+     */
+    public Member updateMember(Long id, Member updatedMember) {
+        Member existingMember = memberRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found with id: " + id));
+        existingMember.setUsername(updatedMember.getUsername());
+        existingMember.setEmail(updatedMember.getEmail());
+        return memberRepository.save(existingMember);
+    }
+
+    /**
+     * 특정 회원 삭제
+     *
+     * @param id 삭제할 회원 ID
+     */
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
