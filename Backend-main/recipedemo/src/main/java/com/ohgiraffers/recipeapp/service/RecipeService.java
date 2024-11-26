@@ -82,4 +82,23 @@ public class RecipeService {
     public void deleteRecipe(Long id) {
         recipeRepository.deleteById(id);
     }
+
+    /**
+     * 제목으로 레시피 검색
+     *
+     * @param title 레시피 제목
+     * @return List<Recipe> - 제목에 해당 문자열이 포함된 레시피 목록
+     */
+    public List<Recipe> searchRecipesByTitle(String title) {
+        return recipeRepository.findByDescriptionContainingIgnoreCase(title);
+    }
+
+    /**
+     * 조회수 기준으로 레시피 정렬
+     *
+     * @return List<Recipe> - 조회수 순으로 정렬된 레시피 목록
+     */
+    public List<Recipe> getRecipesByPopularity() {
+        return recipeRepository.findAllByOrderByViewsDesc();
+    }
 }

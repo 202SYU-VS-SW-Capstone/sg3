@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Backend-main.iml" filepath="$PROJECT_DIR$/.idea/Backend-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.ohgiraffers.recipedemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.ohgiraffers.recipedemo.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/recipedemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/recipedemo.main.iml" />
     </modules>
   </component>

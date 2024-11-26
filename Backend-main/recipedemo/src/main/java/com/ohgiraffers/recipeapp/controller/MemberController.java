@@ -78,4 +78,16 @@ public class MemberController {
         memberService.deleteMember(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+
+    /**
+     * 닉네임으로 회원 조회
+     *
+     * @param nickname 닉네임 (Query Parameter)
+     * @return ResponseEntity<Member> - 조회된 회원 데이터와 HTTP 상태 코드
+     */
+    @GetMapping("/search")
+    public ResponseEntity<Member> getMemberByNickname(@RequestParam String nickname) {
+        Member member = memberService.getMemberByNickname(nickname);
+        return ResponseEntity.ok(member);
+    }
 }

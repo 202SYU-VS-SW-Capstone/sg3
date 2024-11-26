@@ -91,4 +91,27 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
+
+    /**
+     * 제목으로 레시피 검색
+     *
+     * @param title 레시피 제목 (Query Parameter)
+     * @return ResponseEntity<List<Recipe>> - 제목에 해당 문자열이 포함된 레시피 목록과 HTTP 상태 코드
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<Recipe>> searchRecipesByTitle(@RequestParam String title) {
+        List<Recipe> recipes = recipeService.searchRecipesByTitle(title);
+        return ResponseEntity.ok(recipes);
+    }
+
+    /**
+     * 조회수 기준으로 레시피 정렬
+     *
+     * @return ResponseEntity<List<Recipe>> - 조회수 순으로 정렬된 레시피 목록과 HTTP 상태 코드
+     */
+    @GetMapping("/popular")
+    public ResponseEntity<List<Recipe>> getRecipesByPopularity() {
+        List<Recipe> recipes = recipeService.getRecipesByPopularity();
+        return ResponseEntity.ok(recipes);
+    }
 }

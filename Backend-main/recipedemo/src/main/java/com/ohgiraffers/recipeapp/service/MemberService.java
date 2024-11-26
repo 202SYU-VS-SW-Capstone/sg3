@@ -83,4 +83,16 @@ public class MemberService {
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
+
+    /**
+     * 닉네임으로 회원 조회
+     *
+     * @param nickname 닉네임
+     * @return Member - 조회된 회원 데이터
+     * @throws IllegalArgumentException - 닉네임에 해당하는 회원이 없을 경우 예외 발생
+     */
+    public Member getMemberByNickname(String nickname) {
+        return memberRepository.findByNickname(nickname)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found with nickname: " + nickname));
+    }
 }

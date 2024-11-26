@@ -38,7 +38,7 @@ dependencies {
     // JPA 기반 데이터 접근을 위한 의존성
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    // Spring Security를 통한 인증 및 권한 관리를 위한 의존성
+    // Spring Security를 통한 인증 및 권한 관리를 위한 의존성(swagger 테스트 할 시 주석처리)
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // 웹 애플리케이션 개발을 위한 의존성
@@ -53,7 +53,7 @@ dependencies {
     // 개발 편의를 위한 자동 재시작 기능 제공
     // developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    // Docker Compose와의 연동을 위한 의존성
+    // Docker Compose 와의 연동을 위한 의존성(swagger 테스트 할 시 주석처리)
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
 
     // MySQL 데이터베이스와의 연결을 위한 JDBC 드라이버
@@ -65,7 +65,7 @@ dependencies {
     // Testcontainers 기반의 컨테이너 환경에서의 테스트 지원
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 
-    // Spring Security 테스트 도구 지원
+    // Spring Security 테스트 도구 지원(swagger 테스트 할 시 주석처리)
     testImplementation 'org.springframework.security:spring-security-test'
 
     // Testcontainers와 JUnit 통합을 위한 의존성
@@ -76,6 +76,9 @@ dependencies {
 
     // JUnit5 플랫폼 런처 의존성 (IDE 실행 시 사용)
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // swagger 연결 관련 의존성
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 }
 
 bootJar {
