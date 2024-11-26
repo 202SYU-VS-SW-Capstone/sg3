@@ -8,6 +8,12 @@ import java.util.List;
 
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
-    // 특정 회원의 공지사항 찾기
-    List<Notice> findByMemberId(Long memberId);
+
+    /**
+     * 제목으로 공지사항 검색 (부분 일치)
+     * @param title 공지 제목
+     * @return List<Notice> - 제목에 해당 문자열이 포함된 공지 목록
+     */
+    List<Notice> findByTitleContainingIgnoreCase(String title);
 }
+

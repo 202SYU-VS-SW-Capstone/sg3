@@ -11,21 +11,26 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RecipeReport { // 레시피 신고 테이블
+public class RecipeReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 신고 ID
 
     @ManyToOne
-    @JoinColumn(name = "reporter_member_id")
-    private Member reporter;
+    @JoinColumn(name = "reporter_member_id", nullable = false)
+    private Member reporter; // 신고한 회원
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe; // 신고된 레시피
 
-    private String reportTitle;
-    private String reportContent;
-    private LocalDate reportedAt;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String reportTitle; // 신고 제목
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String reportContent; // 신고 내용
+
+    @Column(nullable = false, name = "reported_at")
+    private LocalDate reportedAt; // 신고 날짜
 }

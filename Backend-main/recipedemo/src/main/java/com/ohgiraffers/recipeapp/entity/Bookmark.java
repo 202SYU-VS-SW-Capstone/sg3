@@ -15,15 +15,17 @@ public class Bookmark { // 북마크 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 북마크 ID
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member; // 북마크한 사용자
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe; // 북마크된 레시피
 
-    private LocalDate savedAt;
+    @Column(name = "saved_at", nullable = false)
+    private LocalDate savedAt; // 북마크 저장 날짜
 }
+

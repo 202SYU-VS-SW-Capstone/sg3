@@ -12,19 +12,23 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Inquiry {  // 문의사항 테이블
+public class Inquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 문의 ID
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member; // 회원 정보
 
-    private String content;
-    private LocalDate createdAt;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String content; // 문의 내용
+
+    @Column(nullable = false, name = "created_at")
+    private LocalDate createdAt; // 문의 생성 날짜
 
     @Enumerated(EnumType.STRING)
-    private InquiryStatus status; // 답변 완료, 답변 미완료
+    @Column(nullable = false, columnDefinition = "ENUM('Incomplete', 'Complete')")
+    private InquiryStatus status = InquiryStatus.INCOMPLETE; // 문의 상태
 }

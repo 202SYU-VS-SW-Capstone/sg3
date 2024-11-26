@@ -9,12 +9,14 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MajorCategory {    // 식재료 대분류 테이블
+public class MajorCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 대분류 ID
 
-    private String name;
+    @Column(nullable = false)
+    private String name; // 대분류 이름
 }
+
 

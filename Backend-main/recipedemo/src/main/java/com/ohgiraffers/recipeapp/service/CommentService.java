@@ -11,7 +11,6 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    // Repository 주입
     public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }

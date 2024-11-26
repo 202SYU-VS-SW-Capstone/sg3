@@ -13,7 +13,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    // MemberService 를 생성자로 주입
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
@@ -38,6 +37,18 @@ public class MemberController {
     public ResponseEntity<Member> getMemberById(@PathVariable Long id) {
         Member member = memberService.getMemberById(id);
         return ResponseEntity.ok(member);
+    }
+
+    /**
+     * 새로운 회원 추가
+     *
+     * @param member 저장할 회원 데이터 (Request Body)
+     * @return ResponseEntity<Member> - 저장된 회원 데이터와 HTTP 상태 코드
+     */
+    @PostMapping
+    public ResponseEntity<Member> createMember(@RequestBody Member member) {
+        Member savedMember = memberService.saveMember(member);
+        return ResponseEntity.status(201).body(savedMember); // 201 Created
     }
 
     /**

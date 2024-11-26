@@ -13,3 +13,6 @@ spring:
   sql:
     init:
       mode: always  # schema.sql 파일을 항상 실행하도록 설정
+  docker:
+    compose:
+      enabled: false

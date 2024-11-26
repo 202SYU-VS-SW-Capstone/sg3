@@ -1,6 +1,7 @@
 package com.ohgiraffers.recipeapp.entity;
 
 import com.ohgiraffers.recipeapp.enums.IngredientStatus;
+import com.ohgiraffers.recipeapp.keys.RefrigeratorIngredientId;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,24 +13,26 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RefrigeratorIngredient {   // 냉장고 식재료 테이블
+@IdClass(RefrigeratorIngredientId.class) // 복합 키를 사용하기 위한 설정
+public class RefrigeratorIngredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+    @JoinColumn(name = "ingredient_id", nullable = false)
+    private Ingredient ingredient; // 재료 ID와 연결
 
+    @Id
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member; // 회원 ID와 연결
 
-    private String quantity;
+    @Column(nullable = false)
+    private String quantity; // 재료 수량
 
     @Enumerated(EnumType.STRING)
-    private IngredientStatus status; // 미사용, 사용중, 소진
+    @Column(nullable = false)
+    private IngredientStatus status = IngredientStatus.UNUSED; // 재료 상태
 
-    private LocalDate expirationDate;
+    @Column(name = "expiration_date")
+    private LocalDate expirationDate; // 재료의 유통기한
 }

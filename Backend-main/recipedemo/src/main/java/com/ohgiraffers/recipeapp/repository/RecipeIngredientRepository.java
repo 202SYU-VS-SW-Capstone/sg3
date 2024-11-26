@@ -8,9 +8,12 @@ import java.util.List;
 
 @Repository
 public interface RecipeIngredientRepository extends JpaRepository<RecipeIngredient, Long> {
-    // 특정 레시피에 사용된 모든 재료 가져오기
-    List<RecipeIngredient> findByRecipeId(Long recipeId);
 
-    // 특정 재료가 사용된 모든 레시피 가져오기
-    List<RecipeIngredient> findByIngredientId(Long ingredientId);
+    /**
+     * 특정 레시피의 재료 목록 조회
+     * @param recipeId 레시피 ID
+     * @return List<RecipeIngredient> - 해당 레시피의 재료 목록
+     */
+    List<RecipeIngredient> findByRecipeId(Long recipeId);
 }
+

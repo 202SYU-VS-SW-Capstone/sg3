@@ -13,7 +13,6 @@ public class IngredientController {
 
     private final IngredientService ingredientService;
 
-    // IngredientService 를 생성자로 주입
     public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }

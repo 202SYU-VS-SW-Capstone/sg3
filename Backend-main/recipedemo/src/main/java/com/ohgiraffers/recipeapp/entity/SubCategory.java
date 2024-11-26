@@ -9,16 +9,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SubCategory {  // 식재료 소분류 테이블
+public class SubCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 소분류 ID
 
     @ManyToOne
-    @JoinColumn(name = "major_category_id")
-    private MajorCategory majorCategory;
+    @JoinColumn(name = "major_category_id", nullable = false)
+    private MajorCategory majorCategory; // 대분류와 연관 관계
 
-    private String name;
+    @Column(nullable = false)
+    private String name; // 소분류 이름
 }
 

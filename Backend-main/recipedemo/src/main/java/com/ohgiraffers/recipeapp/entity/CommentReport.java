@@ -11,22 +11,28 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CommentReport {    // 댓글 신고 테이블
+public class CommentReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 신고 ID
 
     @ManyToOne
-    @JoinColumn(name = "reporter_member_id")
-    private Member reporter;
+    @JoinColumn(name = "reporter_member_id", nullable = false)
+    private Member reporter; // 신고한 회원
 
     @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+    @JoinColumn(name = "comment_id", nullable = false)
+    private Comment comment; // 신고된 댓글
 
-    private String reportTitle;
-    private String reportContent;
-    private LocalDate reportedAt;
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String reportTitle; // 신고 제목
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String reportContent; // 신고 내용
+
+    @Column(nullable = false, name = "reported_at")
+    private LocalDate reportedAt; // 신고 날짜
 }
+
 

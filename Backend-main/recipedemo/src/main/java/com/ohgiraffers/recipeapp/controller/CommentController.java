@@ -13,7 +13,6 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    // CommentService 를 생성자로 주입
     public CommentController(CommentService commentService) {
         this.commentService = commentService;
     }

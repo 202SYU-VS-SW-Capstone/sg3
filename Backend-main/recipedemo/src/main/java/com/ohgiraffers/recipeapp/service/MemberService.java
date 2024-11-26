@@ -11,7 +11,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    // MemberRepository를 생성자로 주입
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
@@ -38,7 +37,29 @@ public class MemberService {
     }
 
     /**
-     * 특정 회원 정보 수정
+     * 이메일로 회원 조회
+     *
+     * @param email 회원 이메일
+     * @return Member - 조회된 회원 데이터
+     * @throws IllegalArgumentException - 해당 이메일의 회원이 없을 경우 예외 발생
+     */
+    public Member getMemberByEmail(String email) {
+        return memberRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found with email: " + email));
+    }
+
+    /**
+     * 새로운 회원 저장
+     *
+     * @param member 저장할 회원 데이터
+     * @return Member - 저장된 회원 데이터
+     */
+    public Member saveMember(Member member) {
+        return memberRepository.save(member);
+    }
+
+    /**
+     * 회원 정보 수정
      *
      * @param id 수정할 회원 ID
      * @param updatedMember 수정할 회원 데이터
@@ -47,13 +68,15 @@ public class MemberService {
     public Member updateMember(Long id, Member updatedMember) {
         Member existingMember = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Member not found with id: " + id));
-        existingMember.setUsername(updatedMember.getUsername());
         existingMember.setEmail(updatedMember.getEmail());
+        existingMember.setNickname(updatedMember.getNickname());
+        existingMember.setPassword(updatedMember.getPassword());
+        existingMember.setMemberType(updatedMember.getMemberType());
         return memberRepository.save(existingMember);
     }
 
     /**
-     * 특정 회원 삭제
+     * 회원 삭제
      *
      * @param id 삭제할 회원 ID
      */

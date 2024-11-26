@@ -9,16 +9,24 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CookingStep {  // 조리단계 테이블
+public class CookingStep {  // 조리 단계 테이블
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // 조리 단계 ID
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe; // 조리 단계가 속한 레시피
 
-    private String description;
-    private int stepNumber;
+    @ManyToOne
+    @JoinColumn(name = "step_image_id")
+    private CookingStepImage stepImage; // 조리 단계와 연결된 이미지
+
+    @Column(nullable = false)
+    private String description; // 조리 단계 설명
+
+    @Column(name = "step_number", nullable = false)
+    private int stepNumber; // 조리 단계 순서
 }
+
