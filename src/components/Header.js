@@ -21,6 +21,13 @@ const Header = () => {
           <li><Link to="/inquiryForm">InquiryForm</Link></li>  
           <li><Link to="/ReportForm">ReportForm</Link></li>  
 
+
+          <li><Link to="/manager">Manager</Link></li>  
+          <li><Link to="/memberList">MemberList</Link></li>
+          <li><Link to="/notice">Notice</Link></li>
+          <li><Link to="/nonMember">NonMember</Link></li>
+          <li><Link to="/dataManagement">DataManagement</Link></li>
+          <li><Link to="/inquiry">Inquiry</Link></li>
         </ul>
       </nav>
     </header>
