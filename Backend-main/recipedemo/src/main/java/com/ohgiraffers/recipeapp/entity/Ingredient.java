@@ -5,7 +5,8 @@ import lombok.*;
 
 @Entity
 @Table(name = "ingredients")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -13,16 +14,18 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ingredient_id")
     private Long id; // 재료 ID
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_category_id", nullable = false)
     private SubCategory subCategory; // 소분류와 연결
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String name; // 재료 이름
 
-    @ManyToOne
-    @JoinColumn(name = "ingredient_image_id", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ingredient_image_id")
     private IngredientImage ingredientImage; // 재료 이미지와 연결
 }
+

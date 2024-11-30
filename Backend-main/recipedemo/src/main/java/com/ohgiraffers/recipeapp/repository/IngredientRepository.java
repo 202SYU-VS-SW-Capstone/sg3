@@ -17,13 +17,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     List<Ingredient> findBySubCategoryId(Long subCategoryId);
 
     /**
-     * 대분류 ID로 재료 검색
-     * @param majorCategoryId 대분류 ID
-     * @return List<Ingredient> - 해당 대분류에 속하는 재료 목록
-     */
-    List<Ingredient> findBySubCategoryMajorCategoryId(Long majorCategoryId);
-
-    /**
      * 재료 이름으로 검색
      * @param name 검색할 재료 이름
      * @return List<Ingredient> - 해당 이름을 포함하는 재료 목록

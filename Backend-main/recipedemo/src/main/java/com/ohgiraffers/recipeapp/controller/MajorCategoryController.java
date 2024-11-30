@@ -35,7 +35,7 @@ public class MajorCategoryController {
      * @return ResponseEntity<MajorCategory> - 조회된 대분류 데이터
      */
     @GetMapping("/{id}")
-    public ResponseEntity<MajorCategory> getMajorCategoryById(@PathVariable Long id) {
+    public ResponseEntity<MajorCategory> getMajorCategoryById(@PathVariable("id") Long id) {
         MajorCategory majorCategory = majorCategoryService.getMajorCategoryById(id);
         return ResponseEntity.ok(majorCategory);
     }
@@ -47,7 +47,7 @@ public class MajorCategoryController {
      * @return ResponseEntity<List<MajorCategory>> - 검색된 대분류 목록
      */
     @GetMapping("/search")
-    public ResponseEntity<List<MajorCategory>> searchMajorCategoriesByName(@RequestParam String name) {
+    public ResponseEntity<List<MajorCategory>> searchMajorCategoriesByName(@RequestParam("name") String name) {
         List<MajorCategory> majorCategories = majorCategoryService.searchMajorCategoriesByName(name);
         return ResponseEntity.ok(majorCategories);
     }
@@ -73,7 +73,7 @@ public class MajorCategoryController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<MajorCategory> updateMajorCategory(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody MajorCategory updatedMajorCategory
     ) {
         MajorCategory majorCategory = majorCategoryService.updateMajorCategory(id, updatedMajorCategory);
@@ -87,7 +87,7 @@ public class MajorCategoryController {
      * @return ResponseEntity<Void> - 본문 없이 HTTP 상태 코드만 반환
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMajorCategory(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMajorCategory(@PathVariable("id") Long id) {
         majorCategoryService.deleteMajorCategory(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }

@@ -1,103 +1,115 @@
 package com.ohgiraffers.recipeapp.service;
 
+import com.ohgiraffers.recipeapp.dto.IngredientDTO;
 import com.ohgiraffers.recipeapp.entity.Ingredient;
+import com.ohgiraffers.recipeapp.entity.SubCategory;
 import com.ohgiraffers.recipeapp.repository.IngredientRepository;
+import com.ohgiraffers.recipeapp.repository.SubCategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class IngredientService {
 
     private final IngredientRepository ingredientRepository;
+    private final SubCategoryRepository subCategoryRepository;
 
-    // Repository를 생성자로 주입
-    public IngredientService(IngredientRepository ingredientRepository) {
+    public IngredientService(IngredientRepository ingredientRepository, SubCategoryRepository subCategoryRepository) {
         this.ingredientRepository = ingredientRepository;
+        this.subCategoryRepository = subCategoryRepository;
     }
 
     /**
-     * 모든 재료 조회
-     *
-     * @return List<Ingredient> - 데이터베이스에 저장된 모든 재료 목록
+     * 모든 재료 조회 (DTO 반환)
      */
-    public List<Ingredient> getAllIngredients() {
-        return ingredientRepository.findAll();
+    public List<IngredientDTO> getAllIngredients() {
+        List<Ingredient> ingredients = ingredientRepository.findAll();
+        return ingredients.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     /**
-     * ID로 특정 재료 조회
-     *
-     * @param id 재료 ID
-     * @return Ingredient - 조회된 재료 데이터
-     * @throws IllegalArgumentException - 해당 ID의 재료가 없을 경우 예외 발생
+     * 특정 재료 조회 (DTO 반환)
      */
-    public Ingredient getIngredientById(Long id) {
-        return ingredientRepository.findById(id)
+    public IngredientDTO getIngredientById(Long id) {
+        Ingredient ingredient = ingredientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Ingredient not found with id: " + id));
+        return convertToDTO(ingredient);
     }
 
     /**
-     * 새로운 재료 저장
-     *
-     * @param ingredient 저장할 재료 데이터
-     * @return Ingredient - 저장된 재료 데이터
+     * 소분류 ID로 재료 검색 (DTO 반환)
      */
-    public Ingredient saveIngredient(Ingredient ingredient) {
-        return ingredientRepository.save(ingredient);
+    public List<IngredientDTO> getIngredientsBySubCategory(Long subCategoryId) {
+        List<Ingredient> ingredients = ingredientRepository.findBySubCategoryId(subCategoryId);
+        return ingredients.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     /**
-     * 특정 재료 수정
-     *
-     * @param id 수정할 재료 ID
-     * @param updatedIngredient 수정할 재료 데이터
-     * @return Ingredient - 수정된 재료 데이터
+     * 재료 이름으로 검색 (DTO 반환)
      */
-    public Ingredient updateIngredient(Long id, Ingredient updatedIngredient) {
+    public List<IngredientDTO> searchIngredientsByName(String name) {
+        List<Ingredient> ingredients = ingredientRepository.findByNameContainingIgnoreCase(name);
+        return ingredients.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    /**
+     * 새로운 재료 저장 (DTO로 저장)
+     */
+    public IngredientDTO saveIngredient(IngredientDTO ingredientDTO) {
+        // SubCategory 조회
+        SubCategory subCategory = subCategoryRepository.findById(ingredientDTO.getSubCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid subCategoryId: " + ingredientDTO.getSubCategoryId()));
+
+        // DTO → 엔티티 변환
+        Ingredient ingredient = new Ingredient();
+        ingredient.setName(ingredientDTO.getName());
+        ingredient.setSubCategory(subCategory);
+
+        Ingredient savedIngredient = ingredientRepository.save(ingredient);
+        return convertToDTO(savedIngredient);
+    }
+
+    /**
+     * 특정 재료 수정 (DTO로 업데이트)
+     */
+    public IngredientDTO updateIngredient(Long id, IngredientDTO ingredientDTO) {
         Ingredient existingIngredient = ingredientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Ingredient not found with id: " + id));
-        existingIngredient.setName(updatedIngredient.getName());
-        existingIngredient.setSubCategory(updatedIngredient.getSubCategory());
-        return ingredientRepository.save(existingIngredient);
+
+        SubCategory subCategory = subCategoryRepository.findById(ingredientDTO.getSubCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid subCategoryId: " + ingredientDTO.getSubCategoryId()));
+
+        existingIngredient.setName(ingredientDTO.getName());
+        existingIngredient.setSubCategory(subCategory);
+
+        Ingredient updatedIngredient = ingredientRepository.save(existingIngredient);
+        return convertToDTO(updatedIngredient);
     }
 
     /**
      * 특정 재료 삭제
-     *
-     * @param id 삭제할 재료 ID
      */
     public void deleteIngredient(Long id) {
+        if (!ingredientRepository.existsById(id)) {
+            throw new IllegalArgumentException("Ingredient not found with id: " + id);
+        }
         ingredientRepository.deleteById(id);
     }
 
     /**
-     * 소분류 ID로 재료 검색
-     *
-     * @param subCategoryId 소분류 ID
-     * @return List<Ingredient> - 해당 소분류에 속하는 재료 목록
+     * 엔티티 → DTO 변환
      */
-    public List<Ingredient> getIngredientsBySubCategory(Long subCategoryId) {
-        return ingredientRepository.findBySubCategoryId(subCategoryId);
-    }
-
-    /**
-     * 대분류 ID로 재료 검색
-     *
-     * @param majorCategoryId 대분류 ID
-     * @return List<Ingredient> - 해당 대분류에 속하는 재료 목록
-     */
-    public List<Ingredient> getIngredientsByMajorCategory(Long majorCategoryId) {
-        return ingredientRepository.findBySubCategoryMajorCategoryId(majorCategoryId);
-    }
-
-    /**
-     * 재료 이름으로 검색
-     *
-     * @param name 검색할 재료 이름
-     * @return List<Ingredient> - 해당 이름을 포함하는 재료 목록
-     */
-    public List<Ingredient> searchIngredientsByName(String name) {
-        return ingredientRepository.findByNameContainingIgnoreCase(name);
+    private IngredientDTO convertToDTO(Ingredient ingredient) {
+        return new IngredientDTO(
+                ingredient.getId(),
+                ingredient.getName(),
+                ingredient.getSubCategory() != null ? ingredient.getSubCategory().getName() : null,
+                ingredient.getSubCategory() != null ? ingredient.getSubCategory().getId() : null, // subCategoryId 추가
+                ingredient.getSubCategory() != null && ingredient.getSubCategory().getMajorCategory() != null
+                        ? ingredient.getSubCategory().getMajorCategory().getName() : null,
+                ingredient.getIngredientImage() != null ? ingredient.getIngredientImage().getUrl() : null
+        );
     }
 }

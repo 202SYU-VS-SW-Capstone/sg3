@@ -35,7 +35,7 @@ public class SubCategoryController {
      * @return ResponseEntity<SubCategory> - 조회된 소분류 데이터
      */
     @GetMapping("/{id}")
-    public ResponseEntity<SubCategory> getSubCategoryById(@PathVariable Long id) {
+    public ResponseEntity<SubCategory> getSubCategoryById(@PathVariable("id") Long id) {
         SubCategory subCategory = subCategoryService.getSubCategoryById(id);
         return ResponseEntity.ok(subCategory);
     }
@@ -47,7 +47,7 @@ public class SubCategoryController {
      * @return ResponseEntity<List<SubCategory>> - 해당 대분류의 소분류 목록
      */
     @GetMapping("/major-category")
-    public ResponseEntity<List<SubCategory>> getSubCategoriesByMajorCategory(@RequestParam Long majorCategoryId) {
+    public ResponseEntity<List<SubCategory>> getSubCategoriesByMajorCategory(@RequestParam("majorCategoryId") Long majorCategoryId) {
         List<SubCategory> subCategories = subCategoryService.getSubCategoriesByMajorCategory(majorCategoryId);
         return ResponseEntity.ok(subCategories);
     }
@@ -59,7 +59,7 @@ public class SubCategoryController {
      * @return ResponseEntity<List<SubCategory>> - 검색된 소분류 목록
      */
     @GetMapping("/search")
-    public ResponseEntity<List<SubCategory>> searchSubCategoriesByName(@RequestParam String name) {
+    public ResponseEntity<List<SubCategory>> searchSubCategoriesByName(@RequestParam("name") String name) {
         List<SubCategory> subCategories = subCategoryService.searchSubCategoriesByName(name);
         return ResponseEntity.ok(subCategories);
     }
@@ -85,7 +85,7 @@ public class SubCategoryController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<SubCategory> updateSubCategory(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody SubCategory updatedSubCategory
     ) {
         SubCategory subCategory = subCategoryService.updateSubCategory(id, updatedSubCategory);
@@ -99,7 +99,7 @@ public class SubCategoryController {
      * @return ResponseEntity<Void> - 본문 없이 HTTP 상태 코드만 반환
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSubCategory(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSubCategory(@PathVariable("id") Long id) {
         subCategoryService.deleteSubCategory(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
