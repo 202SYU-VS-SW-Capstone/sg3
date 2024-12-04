@@ -2,7 +2,7 @@
 header {
   background-color: #ffffff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px 40px; /* 패딩 증가 */
+  padding: 20px 40px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -16,6 +16,7 @@ header.scrolled {
 
 /* 네비게이션 바 */
 nav {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -25,7 +26,7 @@ nav {
 
 /* 로고 */
 .nav-logo {
-  font-size: 28px; /* 폰트 크기 증가 */
+  font-size: 28px;
   font-weight: bold;
   color: #333;
   text-decoration: none;
@@ -40,7 +41,7 @@ nav {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 40px; /* 메뉴 간격 증가 */
+  gap: 40px;
 }
 
 .nav-menu li {
@@ -50,7 +51,7 @@ nav {
 .nav-menu a {
   text-decoration: none;
   color: #333;
-  font-size: 18px; /* 폰트 크기 증가 */
+  font-size: 18px;
   font-weight: 500;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -60,45 +61,46 @@ nav {
   transform: scale(1.1);
 }
 
-/* 모바일 메뉴 */
-.menu-toggle {
-  font-size: 28px; /* 크기 증가 */
+/* 서브메뉴 스타일 */
+.submenu-container {
+  position: relative;
   cursor: pointer;
-  display: none;
 }
 
 .submenu {
-  display: none;
-  flex-direction: column;
-  background-color: #ffffff;
+  display: block;
   position: absolute;
-  top: 80px; /* 위치 조정 */
-  right: 20px;
-  width: 220px; /* 너비 증가 */
+  top: 60px;
+  left: 0;
+  width: 220px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px; /* 패딩 증가 */
+  padding: 10px;
+  background-color: white;
   border-radius: 8px;
   z-index: 1000;
 }
 
-.submenu.active {
-  display: flex;
-}
-
 .submenu li {
   list-style: none;
-  padding: 12px 0; /* 간격 증가 */
+  padding: 12px 0;
 }
 
 .submenu li a {
   text-decoration: none;
   color: #333;
-  font-size: 16px; /* 폰트 크기 증가 */
+  font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .submenu li a:hover {
   color: #81C975;
+}
+
+/* 모바일 메뉴 */
+.menu-toggle {
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
 }
 
 /* 반응형 스타일 */
@@ -110,18 +112,30 @@ nav {
   .nav-menu {
     display: none;
     flex-direction: column;
-    gap: 20px; /* 간격 증가 */
+    gap: 20px;
     background-color: #ffffff;
     position: absolute;
     top: 100%;
-    right: 0;
-    width: 280px; /* 너비 증가 */
+    left: 0;
+    width: 280px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 25px; /* 패딩 증가 */
+    padding: 25px;
     border-radius: 0 0 8px 8px;
   }
 
   .nav-menu.active {
     display: flex;
+  }
+
+  .submenu {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
   }
 }
