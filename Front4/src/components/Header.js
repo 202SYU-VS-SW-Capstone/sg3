@@ -28,7 +28,7 @@ const Header = () => {
       <nav>
         {/* 로고 */}
         <Link to="/" className="nav-logo">
-          새길
+          <img src="img/logo.png" alt="새길 로고" className="logo-image" />
         </Link>
 
         {/* 데스크탑 메뉴 */}
@@ -50,7 +50,6 @@ const Header = () => {
                 <li><Link to="/recipe">Recipe</Link></li>
                 <li><Link to="/imageAnalysis">Image Analysis</Link></li>
                 <li><Link to="/fridgeInventory">Fridge Inventory</Link></li>
-               
                {/* 
                   <li><Link to="/mypage">mypage</Link></li>  
                   <li><Link to="/recipe">recipe</Link></li>  

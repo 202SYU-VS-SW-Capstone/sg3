@@ -139,3 +139,8 @@ nav {
     z-index: 100;
   }
 }
+
+.logo-image {
+  width: 130px; /* 원하는 크기로 설정 */
+  height: auto;
+}

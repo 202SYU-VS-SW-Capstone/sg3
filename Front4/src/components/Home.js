@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="main-section">
-        <h2>“식재료 사진을 업로드 해주세요! 관리를 도와 드릴게요!”</h2>
+        <h2>“식재료 사진을 업로드 해주세요! 냉장고 관리를 도와 드릴게요!”</h2>
         <img src={`${process.env.PUBLIC_URL}/img/1.jpg`} alt="메인" className="main-image" />
         
         {/* Link 컴포넌트를 사용하여 페이지 이동 */}
