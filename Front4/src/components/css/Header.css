@@ -1,31 +1,127 @@
-/* 헤더 스타일 */
+/* 기본 헤더 스타일 */
 header {
-  background-color: #81C975;  /* 헤더 색상 */
-  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 40px; /* 패딩 증가 */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 네비게이션 바 */
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #fff;
 }
 
-header .title {
-  font-size: 1.5rem;
+/* 로고 */
+.nav-logo {
+  font-size: 28px; /* 폰트 크기 증가 */
   font-weight: bold;
-  text-align: center;
-  flex-grow: 1;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-header .login-button {
-  background-color: #fff;
+.nav-logo:hover {
   color: #81C975;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
 }
 
-header .login-button:hover {
-  background-color: #e0f3e3;
+/* 메뉴 스타일 */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* 메뉴 간격 증가 */
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px; /* 폰트 크기 증가 */
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #81C975;
+  transform: scale(1.1);
+}
+
+/* 모바일 메뉴 */
+.menu-toggle {
+  font-size: 28px; /* 크기 증가 */
+  cursor: pointer;
+  display: none;
+}
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: absolute;
+  top: 80px; /* 위치 조정 */
+  right: 20px;
+  width: 220px; /* 너비 증가 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* 패딩 증가 */
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.submenu.active {
+  display: flex;
+}
+
+.submenu li {
+  list-style: none;
+  padding: 12px 0; /* 간격 증가 */
+}
+
+.submenu li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px; /* 폰트 크기 증가 */
+  transition: color 0.3s ease;
+}
+
+.submenu li a:hover {
+  color: #81C975;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 20px; /* 간격 증가 */
+    background-color: #ffffff;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 280px; /* 너비 증가 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px; /* 패딩 증가 */
+    border-radius: 0 0 8px 8px;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
 }
